@@ -94,7 +94,7 @@ FsO3A
                                 <rect key="frame" x="280" y="181" width="79" height="79"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="50"/>
-                                <state key="normal" title="✖️">
+                                <state key="normal" title="x">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>

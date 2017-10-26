@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var calcDisplayLabelString = "0"
+    var calcDisplayLabelString = ""
     var currentMode: CalculatorMode = .notSet
     var savedNum = 0
     var lastButtonWasMode = false
@@ -23,6 +23,7 @@ class ViewController: UIViewController {
             calcDisplayLabelString = "0"
         }
         calcDisplayLabelString += "\(num)"
+        print("\(calcDisplayLabelString)")
         updateText()
     }
     
