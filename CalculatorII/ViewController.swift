@@ -10,5 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var calcDisplayLabelString = "0"
+    var currentMode: CalculatorMode = .notSet
+    var savedNum = 0
+    var lastButtonWasMode = false
+    
+    @IBOutlet weak var displayLabel: UILabel!
+    
+    
 
 }
