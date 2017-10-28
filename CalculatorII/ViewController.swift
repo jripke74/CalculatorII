@@ -12,17 +12,20 @@ class ViewController: UIViewController {
 
     var calcDisplayLabelString = ""
     var currentMode: CalculatorMode = .notSet
+    var lastNumberPressed = 0
     var savedNum = 0
     var lastButtonWasMode = false
     
     @IBOutlet weak var displayLabel: UILabel!
     
     func tappedNumber(num: Int) {
+        print(lastButtonWasMode)
+        print(currentMode)
+        lastNumberPressed = num
         if lastButtonWasMode {
             lastButtonWasMode = false
-            calcDisplayLabelString = "0"
         }
-        calcDisplayLabelString += "\(num)"
+        calcDisplayLabelString = "\(num)"
         print("\(calcDisplayLabelString)")
         updateText()
     }
@@ -45,6 +48,22 @@ class ViewController: UIViewController {
         if savedNum == 0 {
             return
         }
+        switch newMode {
+        case .addition:
+            savedNum += lastNumberPressed
+        case .subtraction:
+            savedNum -= lastNumberPressed
+        case .mutliplication:
+            savedNum *= lastNumberPressed
+        case .division:
+            savedNum /= lastNumberPressed
+        case .notSet:
+            return
+        }
+        lastNumberPressed = 0
+        calcDisplayLabelString = "\(savedNum)"
+        updateText()
+        lastButtonWasMode = true
         currentMode = newMode
         lastButtonWasMode = true
     }
@@ -103,6 +122,7 @@ class ViewController: UIViewController {
     
     @IBAction func clearBtnTapped(_ sender: UIButton) {
         savedNum = 0
+        lastNumberPressed = 0
         calcDisplayLabelString = "0"
         displayLabel.text = "0"
         lastButtonWasMode = false
