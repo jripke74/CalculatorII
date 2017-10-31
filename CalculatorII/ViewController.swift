@@ -19,14 +19,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var displayLabel: UILabel!
     
     func tappedNumber(num: Int) {
-        print(lastButtonWasMode)
-        print(currentMode)
         lastNumberPressed = num
         if lastButtonWasMode {
             lastButtonWasMode = false
         }
         calcDisplayLabelString = "\(num)"
-        print("\(calcDisplayLabelString)")
         updateText()
     }
     
@@ -81,6 +78,7 @@ class ViewController: UIViewController {
     
     @IBAction func plusBtnTapped(_ sender: UIButton) {
         changeMode(newMode: .addition)
+        
     }
     
     @IBAction func minusBtnTapped(_ sender: UIButton) {
@@ -126,5 +124,10 @@ class ViewController: UIViewController {
         calcDisplayLabelString = "0"
         displayLabel.text = "0"
         lastButtonWasMode = false
+        currentMode = .notSet
+        print("lastButtonWasMode: \(lastButtonWasMode)")
+        print("currentMode: \(currentMode)")
+        print("lastNumberPressed: \(lastNumberPressed)")
+        print("calcDisplayLabelString: \(calcDisplayLabelString)")
     }
 }
