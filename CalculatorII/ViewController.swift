@@ -12,16 +12,17 @@ class ViewController: UIViewController {
 
     var calcDisplayLabelString = ""
     var currentMode: CalculatorMode = .notSet
-    var lastNumberPressed = 0
+    var lastNumberPressed1 = 0
+    var lastNumberPressed2: Int!
     var savedNum = 0
     var lastButtonWasMode = false
     
     @IBOutlet weak var displayLabel: UILabel!
     
     func tappedNumber(num: Int) {
-        lastNumberPressed = num
         if lastButtonWasMode {
             lastButtonWasMode = false
+            lastNumberPressed1 = 0
         }
         calcDisplayLabelString = "\(num)"
         updateText()
@@ -45,24 +46,11 @@ class ViewController: UIViewController {
         if savedNum == 0 {
             return
         }
-        switch newMode {
-        case .addition:
-            savedNum += lastNumberPressed
-        case .subtraction:
-            savedNum -= lastNumberPressed
-        case .mutliplication:
-            savedNum *= lastNumberPressed
-        case .division:
-            savedNum /= lastNumberPressed
-        case .notSet:
-            return
-        }
-        lastNumberPressed = 0
-        calcDisplayLabelString = "\(savedNum)"
+        lastNumberPressed1 = 0
+        //calcDisplayLabelString = "\(savedNum)"
         updateText()
         lastButtonWasMode = true
         currentMode = newMode
-        lastButtonWasMode = true
     }
     
     @IBAction func zeroBtnTapped(_ sender: UIButton) { tappedNumber(num: 0) }
@@ -120,14 +108,14 @@ class ViewController: UIViewController {
     
     @IBAction func clearBtnTapped(_ sender: UIButton) {
         savedNum = 0
-        lastNumberPressed = 0
+        lastNumberPressed1 = 0
         calcDisplayLabelString = "0"
         displayLabel.text = "0"
         lastButtonWasMode = false
         currentMode = .notSet
         print("lastButtonWasMode: \(lastButtonWasMode)")
         print("currentMode: \(currentMode)")
-        print("lastNumberPressed: \(lastNumberPressed)")
+        print("lastNumberPressed: \(lastNumberPressed1)")
         print("calcDisplayLabelString: \(calcDisplayLabelString)")
     }
 }
